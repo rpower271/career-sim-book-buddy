@@ -9,7 +9,7 @@ function Account({ token }) {
       headers: { Authorization: `Bearer ${token}` },
     })
       .then((data) => {
-        // console.log(data);
+        console.log(data);
         setUser(data.data);
         setBooks(data.data.reservations);
       })
