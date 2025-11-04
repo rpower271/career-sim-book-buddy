@@ -30,7 +30,7 @@ function App() {
           element={<Register setToken={setToken} token={token} />}
         />
         <Route path="/book/:id" element={<SingleBook token={token} />} />
-        <Route path="/account" element={<Account />} />
+        <Route path="/account" element={<Account token={token} />} />
         <Route path="*" element={<Books />} />
       </Routes>
     </>

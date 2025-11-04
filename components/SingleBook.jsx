@@ -12,6 +12,25 @@ function SingleBook({ token }) {
       })
       .catch((err) => console.log(err));
   }, []);
+
+  const handleCheckout = async () => {
+    try {
+      const data = await axios.patch(
+        `${import.meta.env.VITE_API_BASE_URL}/api/books/${id}`,
+        { available: false },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      if (data.data) {
+        setBook(data.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="single-book-container">
       <h2>{book?.title}</h2>
@@ -25,7 +44,7 @@ function SingleBook({ token }) {
         )}
         {token &&
           (book?.available ? (
-            <button>check out book</button>
+            <button onClick={handleCheckout}>check out book</button>
           ) : (
             <p>Book not available</p>
           ))}
