@@ -9,6 +9,7 @@ function SingleBook({ token }) {
     axios(`${import.meta.env.VITE_API_BASE_URL}/api/books/${id}`)
       .then((data) => {
         console.log(data);
+        setBook(data.data);
       })
       .catch((err) => console.log(err));
   }, []);

@@ -9,14 +9,11 @@ function Login({ setToken, token }) {
     e.preventDefault();
     if (userData.password && userData.email) {
       axios
-        .post(
-          `${import.meta.env.VITE_API_BASE_URL}/api/users/register`,
-          userData
-        )
+        .post(`${import.meta.env.VITE_API_BASE_URL}/api/users/login`, userData)
         .then((data) => {
           console.log(data);
           setToken(data.data.token);
-          localStorage.setItem(data.data.token);
+          localStorage.setItem("token", data.data.token);
         })
         .catch((err) => console.log(err));
     }
